@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import OAuth from '../components/OAuth';
-import { signInWithEmailAndPassword,getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import {getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 export default function ForgotPassword() {
   const [email, setEmail]= useState("")
