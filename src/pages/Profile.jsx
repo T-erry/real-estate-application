@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { docRef, doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export default function Profile() {
