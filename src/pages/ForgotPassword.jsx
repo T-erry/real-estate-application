@@ -8,12 +8,11 @@ import {getAuth, sendPasswordResetEmail } from 'firebase/auth';
 export default function ForgotPassword() {
   const [email, setEmail]= useState("")
   
-  
   function onChange (e){
     setEmail(e.target.value)
     
   }
-  async function handleSubmit(e){
+ async function handleSubmit(e){
     e.preventDefault();
     try {
       const auth = getAuth();
