@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaBed, FaBath } from "react-icons/fa6";
-import { FaParking,  FaChair } from "react-icons/fa";
-import {getAuth} from "firebase/auth"
-
+import { FaParking, FaChair } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 import SwiperCore, {
   Autoplay,
@@ -93,41 +93,46 @@ export default function Listing() {
               : listing.regularPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  {listing.type === 'rent' ? "/ month" : "" }
+            {listing.type === "rent" ? "/ month" : ""}
           </p>
           <p className="flex items-center mt-6 mb-3 font-semibold">
-            <FaLocationDot className="text-green-700 mr-1" /> 
-          {listing.address}</p>
+            <FaLocationDot className="text-green-700 mr-1" />
+            {listing.address}
+          </p>
           <div className="flex justify-start items-center space-x-4 w-[75%]">
-              <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">{listing.type === "rent" ? "Rent": "Sale"}</p>
-              {listing.offer && (
-                <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">${listing.regularPrice - listing.discountedPrice} discount</p>
-              )}
+            <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">
+              {listing.type === "rent" ? "Rent" : "Sale"}
+            </p>
+            {listing.offer && (
+              <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
+                ${listing.regularPrice - listing.discountedPrice} discount
+              </p>
+            )}
           </div>
           <p className="mt-3 mb-3">
-             <span className="font-semibold">Description - </span>
-          {listing.description}
+            <span className="font-semibold">Description - </span>
+            {listing.description}
           </p>
           <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6">
             <li className="flex items-center whitespace-nowrap">
-            <FaBed className="text-lg mr-1 " />
-              {listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed" }
+              <FaBed className="text-lg mr-1 " />
+              {listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
             </li>
             <li className="flex items-center whitespace-nowrap">
-            <FaBath  className="text-lg mr-1 " />
-              {listing.bathrooms > 1 ? `${listing.bathrooms} Baths` : "1 Bath" }
+              <FaBath className="text-lg mr-1 " />
+              {listing.bathrooms > 1 ? `${listing.bathrooms} Baths` : "1 Bath"}
             </li>
             <li className="flex items-center whitespace-nowrap">
-            <FaParking  className="text-lg mr-1 " />
-              {listing.parking ? "Parking spot" : "No Parking"  }
+              <FaParking className="text-lg mr-1 " />
+              {listing.parking ? "Parking spot" : "No Parking"}
             </li>
             <li className="flex items-center whitespace-nowrap">
-            <FaChair  className="text-lg mr-1 " />
-              {listing.furnished ? "Furnished" : "Not furnished"  }
+              <FaChair className="text-lg mr-1 " />
+              {listing.furnished ? "Furnished" : "Not furnished"}
             </li>
-            </ul>
+          </ul>
 
-            {listing.userRef !== auth.currentUser?.uid && !contactLandlord && (
+          {listing.userRef !== auth.currentUser?.uid && !contactLandlord && (
             <div className="mt-6">
               <button
                 onClick={() => setContactLandlord(true)}
@@ -137,13 +142,30 @@ export default function Listing() {
               </button>
             </div>
           )}
-          {contactLandlord &&(
-            <Contact userRef={listing.userRef} listing={listing}/>
-          ) 
-          }
-          
+          {contactLandlord && (
+            <Contact userRef={listing.userRef} listing={listing} />
+          )}
         </div>
-        <div className="bg-blue-300 w-full h-[200px] lg-[400px] z-10 overflow-hidden "></div>
+        <div className="w-full h-[200px] md:h-[400px] z-10 overflow-hidden mt-6 md:mt-0 md:ml-2">
+          <MapContainer
+            center={[listing.geolocation.lat, listing.geolocation.lng]}
+            zoom={13}
+            scrollWheelZoom={false}
+            style={{height: "100%", width: "100%"}}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker
+              position={[listing.geolocation.lat, listing.geolocation.lng]}
+            >
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
     </main>
   );
