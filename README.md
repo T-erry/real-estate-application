@@ -26,5 +26,12 @@ As a registered user, you have the ability to edit and delete your own listings.
 
 - Responsive Design: Access the platform from various devices with a responsive and user-friendly design.
 
+## Technologies used
+The following projects used the technologies
+:
+- React
+- Firebase
+- TailwindCSS
+
 ### Support
 If you encounter any issues or have questions, our support team is ready to assist you. Reach out to me via email: terrywachuka10@gmail.com
