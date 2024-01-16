@@ -8,10 +8,10 @@ To get started, follow these simple steps:
 Create a new account or log in if you already have one. This step is crucial as it allows you to manage and personalize your listings.
 
 2. Create a Listing
-Once you're logged in, head over to the dashboard and click on "Create Listing." Fill in the necessary details about your property, including title, description, price, and location. Don't forget to upload captivating images to make your listing stand out.
+Once you're logged in, head over to the dashboard and click on profile. Click the SELL or RENT your Home button. Fill in the necessary details about your property, including sell/rent, name, description, offer. Don't forget to upload captivating images to make your listing stand out.
 
 3. Manage Your Listings
-As a registered user, you have the ability to edit and delete your own listings. This ensures that your information is always up-to-date. Visit the "My Listings" section on your dashboard to manage your properties efficiently.
+As a registered user, you have the ability to edit and delete your own listings. This ensures that your information is always up-to-date. Visit the My Listings section on your dashboard to manage your properties efficiently.
 
 4. Add Multiple Images
  You can upload multiple images to your listings, giving potential tenants or buyers a comprehensive view of your property.
