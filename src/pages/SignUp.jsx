@@ -44,10 +44,11 @@ export default function SignUp() {
         toast.success("Sing up was successful");
           navigate('/')
 
-      } catch (error) {
-        toast.error("Something went wrong with the registration")
-        
+      }  catch (error) {
+        toast.error("Error: " + error.message);
+        console.error("Registration error:", error);
       }
+      
 
 
     }
